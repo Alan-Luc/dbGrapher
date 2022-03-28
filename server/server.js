@@ -50,32 +50,17 @@ for(let i = 0; i<result.length; i++) {
     payments.push(result2[i][0].match(/]/g)?.length)
 }
 
-
-//tried to replace fulfillments and payments with regex
-//obj3 = obj3.replace(regex1, `$1${replace1.shift()}`)
-//obj3 = obj3.replace(regex2, `$1${replace2.shift()}`)
-
-
 //replace regex matches with empty string so file is parseable
 obj3 = obj3.replace(regex1, '$1""')
 obj3 = obj3.replace(regex2, '$1""')
-
-/*for(let i = 0; i<result.length; i++) {
-    obj3 = obj3.replace(regex1, `$1${result[i][0].match(/]/g)?.length}`)
-    obj3 = obj3.replace(regex1, `$1${result2[i][0].match(/]/g)?.length}`)
-}*/
-//console.log(obj3)
-
-
 obj3 = JSON5.parse(obj3)
-//console.log(fulfillments, payments)
 
 
 //set up mysql connection
 const db = mysql.createConnection({
     host: "127.0.0.1",
-    user: keys.mysql.user,
-    password: keys.mysql.password,
+    user: "root",
+    password: "44Sm5Zq9!",
     database: "alandb",
 });
 
@@ -90,12 +75,11 @@ db.connect((err)=>{
 
 //empty all tables in the db
 app.get('/delete', (req, res) => {
-    res.send("goodbye william")
+    res.send("delete")
     db.query('DELETE FROM marketing_data', 
         (err, res) => {
             if (err) {
                 console.log("error ", err);
-                //result(err, null);
                 return;
             }
     })
@@ -103,7 +87,6 @@ app.get('/delete', (req, res) => {
         (err, res) => {
             if (err) {
                 console.log("error ", err);
-                //result(err, null);
                 return;
             }
     })
@@ -111,7 +94,6 @@ app.get('/delete', (req, res) => {
         (err, res) => {
             if (err) {
                 console.log("error ", err);
-                //result(err, null);
                 return;
             }
     })
@@ -119,7 +101,6 @@ app.get('/delete', (req, res) => {
         (err, res) => {
             if (err) {
                 console.log("error ", err);
-                //result(err, null);
                 return;
             }
     })
@@ -127,7 +108,6 @@ app.get('/delete', (req, res) => {
         (err, res) => {
             if (err) {
                 console.log("error ", err);
-                //result(err, null);
                 return;
             }
     })
@@ -149,13 +129,12 @@ app.get('/', (req, res) => {
             (err, res) => {
                 if (err) {
                     console.log("error ", err);
-                    //result(err, null);
                     return;
                 }
             }
         );
     });
-    res.send("hello william")
+    res.send("get")
 
     //query using same idea as marketing
     Object.keys(obj2.productSKU).map(entry => {
@@ -177,7 +156,6 @@ app.get('/', (req, res) => {
             (err, res) => {
                 if (err) {
                     console.log("error ", err);
-                    //result(err, null);
                     return;
                 }
             }
@@ -209,7 +187,6 @@ app.get('/', (req, res) => {
             (err, res) => {
                 if (err) {
                     console.log("error ", err);
-                    //result(err, null);
                     return;
                 }
             }
@@ -240,7 +217,6 @@ app.get('/', (req, res) => {
             (err, res) => {
                 if (err) {
                     console.log("error ", err);
-                    //result(err, null);
                     return;
                 }
             }
@@ -269,7 +245,6 @@ app.get('/', (req, res) => {
             (err, res) => {
                 if (err) {
                     console.log("error ", err);
-                    //result(err, null);
                     return;
                 }
             }
@@ -284,7 +259,6 @@ app.get('/marketingChart', (req, res) => {
         (err, data) => {
             if (err) {
                 console.log("error ", err);
-                //result(err, null);
                 return;
             }
             res.send(data)
@@ -297,7 +271,6 @@ app.get('/fulfillmentsChart', (req, res) => {
         (err, data) => {
             if (err) {
                 console.log("error ", err);
-                //result(err, null);
                 return;
             }
             res.send(data)
@@ -310,7 +283,6 @@ app.get('/itemsSoldChart', (req, res) => {
         (err, data) => {
             if (err) {
                 console.log("error ", err);
-                //result(err, null);
                 return;
             }
             res.send(data)
@@ -323,7 +295,6 @@ app.get('/ordersPlacedChart', (req, res) => {
         (err, data) => {
             if (err) {
                 console.log("error ", err);
-                //result(err, null);
                 return;
             }
             res.send(data)
@@ -336,7 +307,6 @@ app.get('/salesRevenueChart', (req, res) => {
         (err, data) => {
             if (err) {
                 console.log("error ", err);
-                //result(err, null);
                 return;
             }
             res.send(data)
