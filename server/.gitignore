@@ -1,4 +1,5 @@
 /node_modules
+/keys.js
 /marketingData.json
 /productGrid.json
 /salesOrders.json
